@@ -72,7 +72,7 @@ open class ChatViewController: ViewController, UITableViewDataSource, UITableVie
     public lazy var composerAddFileTypes = defaultComposerAddFileTypes
     
     /// Default attachments file types for thw composer view. This is useful for subclasses.
-    public var defaultComposerAddFileTypes: [ComposerAddFileType] {
+    open var defaultComposerAddFileTypes: [ComposerAddFileType] {
         return [.photo, .camera, .file]
     }
     
@@ -179,6 +179,7 @@ open class ChatViewController: ViewController, UITableViewDataSource, UITableVie
     
     override open func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
+        self.view.endEditing(true) // To prevent keyboard position bug on pre iPhoneX devices
         stopGifsAnimations()
     }
     
